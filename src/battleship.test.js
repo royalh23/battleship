@@ -1,4 +1,5 @@
 import Ship from './ship';
+import Gameboard from './gameboard';
 
 describe('Ship', () => {
   describe('isSunk', () => {
@@ -18,6 +19,29 @@ describe('Ship', () => {
       const ship = new Ship(4);
       for (let i = 0; i < 4; i += 1) ship.hit();
       expect(ship.isSunk()).toEqual(true);
+    });
+  });
+});
+
+describe('Gameboard', () => {
+  describe('createBoard', () => {
+    it("Returns 10 as board's length", () => {
+      expect(Gameboard.createBoard().length).toEqual(10);
+    });
+
+    it('Returns the full board', () => {
+      expect(Gameboard.createBoard()).toEqual([
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]);
     });
   });
 });
