@@ -24,24 +24,10 @@ describe('Ship', () => {
 });
 
 describe('Gameboard', () => {
-  describe('createBoard', () => {
-    it("Returns 10 as board's length", () => {
-      expect(Gameboard.createBoard().length).toEqual(10);
-    });
-
-    it('Returns the full board', () => {
-      expect(Gameboard.createBoard()).toEqual([
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      ]);
+  describe('placeShip', () => {
+    it('Returns undefined', () => {
+      const gb = new Gameboard();
+      expect(gb.placeShip()).toBeUndefined();
     });
   });
 });
