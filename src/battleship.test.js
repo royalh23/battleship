@@ -25,8 +25,28 @@ describe('Ship', () => {
 
 describe('Gameboard', () => {
   describe('createBoard', () => {
-    it('Returns undefined', () => {
-      expect(Gameboard.createBoard()).toBeUndefined();
+    it('Returns 10 as the length of the board', () => {
+      expect(Gameboard.createBoard().length).toEqual(10);
+    });
+
+    it('Returns 10 as the length of the first row', () => {
+      expect(Gameboard.createBoard()[0].length).toEqual(10);
+    });
+
+    it('Returns the first cell of the first row', () => {
+      expect(Gameboard.createBoard()[0][0]).toEqual({
+        data: null,
+        isHit: false,
+        isAvailable: true,
+      });
+    });
+
+    it('Returns the last cell of the last row', () => {
+      expect(Gameboard.createBoard()[9][9]).toEqual({
+        data: null,
+        isHit: false,
+        isAvailable: true,
+      });
     });
   });
 });
