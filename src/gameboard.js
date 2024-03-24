@@ -18,28 +18,37 @@ export default class Gameboard {
     return gb;
   }
 
+  #makeUnavailableHor(ship, row, col) {
+    for (let r = row - 1; r < row + 2; r += 1) {
+      for (let c = col - 1; c < ship.length() + 1; c += 1) {
+        if (c >= 0 && c <= 9 && r >= 0 && r <= 9) {
+          this.board[r][c].isAvailable = false;
+        }
+      }
+    }
+  }
+
   #placeHorizontally(ship, row, col) {
     let nextCol = col;
     for (let i = 0; i < ship.length(); i += 1) {
       this.board[row][nextCol].data = ship;
-      this.board[row][nextCol].isAvailable = false;
       nextCol += 1;
     }
+    this.#makeUnavailableHor(ship, row, col);
   }
 
   #placeVertically(ship, row, col) {
     let nextRow = row;
     for (let i = 0; i < ship.length(); i += 1) {
       this.board[nextRow][col].data = ship;
-      this.board[nextRow][col].isAvailable = false;
       nextRow += 1;
     }
   }
 
   placeShip(ship, row, col, direction) {
-    if (direction === 'horizontal' && col + ship.length() - 1 <= 9) {
+    if (direction === "horizontal" && col + ship.length() - 1 <= 9) {
       this.#placeHorizontally(ship, row, col);
-    } else if (direction === 'vertical' && row + ship.length() - 1 <= 9) {
+    } else if (direction === "vertical" && row + ship.length() - 1 <= 9) {
       this.#placeVertically(ship, row, col);
     }
   }
