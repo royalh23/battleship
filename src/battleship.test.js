@@ -150,16 +150,20 @@ describe('Gameboard', () => {
         const gb = new Gameboard();
         const ship = new Ship(3);
         gb.placeShip(ship, 0, 8, 'horizontal');
-        expect(gb.board[0][8].data).toEqual(null);
-        expect(gb.board[0][8].isAvailable).toEqual(true);
+        for (let i = 8; i < 10; i += 1) {
+          expect(gb.board[0][i].data).toEqual(null);
+          expect(gb.board[0][i].isAvailable).toEqual(true);
+        }
       });
 
       it('Does not place ship of length 3 horizontally at [9, 8]', () => {
         const gb = new Gameboard();
         const ship = new Ship(3);
         gb.placeShip(ship, 9, 8, 'horizontal');
-        expect(gb.board[9][8].data).toEqual(null);
-        expect(gb.board[9][8].isAvailable).toEqual(true);
+        for (let i = 8; i < 10; i += 1) {
+          expect(gb.board[9][i].data).toEqual(null);
+          expect(gb.board[9][i].isAvailable).toEqual(true);
+        }
       });
 
       it('Places ship of length 3 vertically at [0, 0]', () => {
@@ -186,16 +190,20 @@ describe('Gameboard', () => {
         const gb = new Gameboard();
         const ship = new Ship(3);
         gb.placeShip(ship, 8, 0, 'vertical');
-        expect(gb.board[8][0].data).toEqual(null);
-        expect(gb.board[8][0].isAvailable).toEqual(true);
+        for (let i = 8; i < 10; i += 1) {
+          expect(gb.board[i][0].data).toEqual(null);
+          expect(gb.board[i][0].isAvailable).toEqual(true);
+        }
       });
 
       it('Does not place ship of length 3 vertically at [8, 9]', () => {
         const gb = new Gameboard();
         const ship = new Ship(3);
         gb.placeShip(ship, 8, 9, 'vertical');
-        expect(gb.board[8][9].data).toEqual(null);
-        expect(gb.board[8][9].isAvailable).toEqual(true);
+        for (let i = 8; i < 10; i += 1) {
+          expect(gb.board[i][9].data).toEqual(null);
+          expect(gb.board[i][9].isAvailable).toEqual(true);
+        }
       });
     });
 
@@ -224,16 +232,20 @@ describe('Gameboard', () => {
         const gb = new Gameboard();
         const ship = new Ship(4);
         gb.placeShip(ship, 0, 7, 'horizontal');
-        expect(gb.board[0][7].data).toEqual(null);
-        expect(gb.board[0][7].isAvailable).toEqual(true);
+        for (let i = 7; i < 10; i += 1) {
+          expect(gb.board[0][i].data).toEqual(null);
+          expect(gb.board[0][i].isAvailable).toEqual(true);
+        }
       });
 
       it('Does not place ship of length 4 horizontally at [9, 7]', () => {
         const gb = new Gameboard();
         const ship = new Ship(4);
         gb.placeShip(ship, 9, 7, 'horizontal');
-        expect(gb.board[9][7].data).toEqual(null);
-        expect(gb.board[9][7].isAvailable).toEqual(true);
+        for (let i = 7; i < 10; i += 1) {
+          expect(gb.board[9][i].data).toEqual(null);
+          expect(gb.board[9][i].isAvailable).toEqual(true);
+        }
       });
 
       it('Places ship of length 4 vertically at [0, 0]', () => {
@@ -260,16 +272,20 @@ describe('Gameboard', () => {
         const gb = new Gameboard();
         const ship = new Ship(4);
         gb.placeShip(ship, 7, 0, 'vertical');
-        expect(gb.board[7][0].data).toEqual(null);
-        expect(gb.board[7][0].isAvailable).toEqual(true);
+        for (let i = 7; i < 10; i += 1) {
+          expect(gb.board[i][0].data).toEqual(null);
+          expect(gb.board[i][0].isAvailable).toEqual(true);
+        }
       });
 
       it('Does not place ship of length 4 vertically at [7, 9]', () => {
         const gb = new Gameboard();
         const ship = new Ship(4);
         gb.placeShip(ship, 7, 9, 'vertical');
-        expect(gb.board[7][9].data).toEqual(null);
-        expect(gb.board[7][9].isAvailable).toEqual(true);
+        for (let i = 7; i < 10; i += 1) {
+          expect(gb.board[i][9].data).toEqual(null);
+          expect(gb.board[i][9].isAvailable).toEqual(true);
+        }
       });
     });
 
@@ -298,16 +314,20 @@ describe('Gameboard', () => {
         const gb = new Gameboard();
         const ship = new Ship(5);
         gb.placeShip(ship, 0, 6, 'horizontal');
-        expect(gb.board[0][6].data).toEqual(null);
-        expect(gb.board[0][6].isAvailable).toEqual(true);
+        for (let i = 6; i < 10; i += 1) {
+          expect(gb.board[0][i].data).toEqual(null);
+          expect(gb.board[0][i].isAvailable).toEqual(true);
+        }
       });
 
       it('Does not place ship of length 5 horizontally at [9, 6]', () => {
         const gb = new Gameboard();
         const ship = new Ship(5);
         gb.placeShip(ship, 9, 6, 'horizontal');
-        expect(gb.board[9][6].data).toEqual(null);
-        expect(gb.board[9][6].isAvailable).toEqual(true);
+        for (let i = 6; i < 10; i += 1) {
+          expect(gb.board[9][i].data).toEqual(null);
+          expect(gb.board[9][i].isAvailable).toEqual(true);
+        }
       });
 
       it('Places ship of length 5 vertically at [0, 0]', () => {
@@ -334,16 +354,20 @@ describe('Gameboard', () => {
         const gb = new Gameboard();
         const ship = new Ship(5);
         gb.placeShip(ship, 6, 0, 'vertical');
-        expect(gb.board[6][0].data).toEqual(null);
-        expect(gb.board[6][0].isAvailable).toEqual(true);
+        for (let i = 6; i < 10; i += 1) {
+          expect(gb.board[i][0].data).toEqual(null);
+          expect(gb.board[i][0].isAvailable).toEqual(true);
+        }
       });
 
       it('Does not place ship of length 5 vertically at [6, 9]', () => {
         const gb = new Gameboard();
         const ship = new Ship(5);
         gb.placeShip(ship, 6, 9, 'vertical');
-        expect(gb.board[6][9].data).toEqual(null);
-        expect(gb.board[6][9].isAvailable).toEqual(true);
+        for (let i = 6; i < 10; i += 1) {
+          expect(gb.board[i][9].data).toEqual(null);
+          expect(gb.board[i][9].isAvailable).toEqual(true);
+        }
       });
     });
   });
