@@ -42,7 +42,7 @@ describe('placeShip', () => {
       const ship = new Ship(length);
       gb.placeShip(ship, row, col, 'horizontal');
       for (let i = col; i < col + length; i += 1) {
-        expect(gb.board[row][i].data).toStrictEqual(ship);
+        expect(gb.board[row][i].data).toBe(ship);
       }
     });
 
@@ -64,7 +64,7 @@ describe('placeShip', () => {
       const ship = new Ship(length);
       gb.placeShip(ship, row, col, 'vertical');
       for (let i = row; i < row + length; i += 1) {
-        expect(gb.board[i][col].data).toStrictEqual(ship);
+        expect(gb.board[i][col].data).toBe(ship);
       }
     });
 
