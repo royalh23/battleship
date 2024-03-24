@@ -37,62 +37,10 @@ export default class Gameboard {
   }
 
   placeShip(ship, row, col, direction) {
-    if (direction === 'horizontal') {
-      switch (ship.length()) {
-        case 2:
-          if (col + 1 <= 9) {
-            this.#placeHorizontally(ship, row, col);
-          }
-          break;
-
-        case 3:
-          if (col + 1 <= 9 && col + 2 <= 9) {
-            this.#placeHorizontally(ship, row, col);
-          }
-          break;
-
-        case 4:
-          if (col + 1 <= 9 && col + 2 <= 9 && col + 3 <= 9) {
-            this.#placeHorizontally(ship, row, col);
-          }
-          break;
-
-        case 5:
-          if (col + 1 <= 9 && col + 2 <= 9 && col + 3 <= 9 && col + 4 <= 9) {
-            this.#placeHorizontally(ship, row, col);
-          }
-          break;
-
-        default:
-      }
-    } else {
-      switch (ship.length()) {
-        case 2:
-          if (row + 1 <= 9) {
-            this.#placeVertically(ship, row, col);
-          }
-          break;
-
-        case 3:
-          if (row + 1 <= 9 && row + 2 <= 9) {
-            this.#placeVertically(ship, row, col);
-          }
-          break;
-
-        case 4:
-          if (row + 1 <= 9 && row + 2 <= 9 && row + 3 <= 9) {
-            this.#placeVertically(ship, row, col);
-          }
-          break;
-
-        case 5:
-          if (row + 1 <= 9 && row + 2 <= 9 && row + 3 <= 9 && row + 4 <= 9) {
-            this.#placeVertically(ship, row, col);
-          }
-          break;
-
-        default:
-      }
+    if (direction === 'horizontal' && col + ship.length() - 1 <= 9) {
+      this.#placeHorizontally(ship, row, col);
+    } else if (direction === 'vertical' && row + ship.length() - 1 <= 9) {
+      this.#placeVertically(ship, row, col);
     }
   }
 }
