@@ -1,6 +1,6 @@
 export default class Gameboard {
   constructor() {
-    this.gb = Gameboard.createBoard();
+    this.board = Gameboard.createBoard();
   }
 
   static createBoard() {
@@ -16,5 +16,83 @@ export default class Gameboard {
     }
 
     return gb;
+  }
+
+  #placeHorizontally(ship, row, col) {
+    let nextCol = col;
+    for (let i = 0; i < ship.length(); i += 1) {
+      this.board[row][nextCol].data = ship;
+      this.board[row][nextCol].isAvailable = false;
+      nextCol += 1;
+    }
+  }
+
+  #placeVertically(ship, row, col) {
+    let nextRow = row;
+    for (let i = 0; i < ship.length(); i += 1) {
+      this.board[nextRow][col].data = ship;
+      this.board[nextRow][col].isAvailable = false;
+      nextRow += 1;
+    }
+  }
+
+  placeShip(ship, row, col, direction) {
+    if (direction === 'horizontal') {
+      switch (ship.length()) {
+        case 2:
+          if (col + 1 <= 9) {
+            this.#placeHorizontally(ship, row, col);
+          }
+          break;
+
+        case 3:
+          if (col + 1 <= 9 && col + 2 <= 9) {
+            this.#placeHorizontally(ship, row, col);
+          }
+          break;
+
+        case 4:
+          if (col + 1 <= 9 && col + 2 <= 9 && col + 3 <= 9) {
+            this.#placeHorizontally(ship, row, col);
+          }
+          break;
+
+        case 5:
+          if (col + 1 <= 9 && col + 2 <= 9 && col + 3 <= 9 && col + 4 <= 9) {
+            this.#placeHorizontally(ship, row, col);
+          }
+          break;
+
+        default:
+      }
+    } else {
+      switch (ship.length()) {
+        case 2:
+          if (row + 1 <= 9) {
+            this.#placeVertically(ship, row, col);
+          }
+          break;
+
+        case 3:
+          if (row + 1 <= 9 && row + 2 <= 9) {
+            this.#placeVertically(ship, row, col);
+          }
+          break;
+
+        case 4:
+          if (row + 1 <= 9 && row + 2 <= 9 && row + 3 <= 9) {
+            this.#placeVertically(ship, row, col);
+          }
+          break;
+
+        case 5:
+          if (row + 1 <= 9 && row + 2 <= 9 && row + 3 <= 9 && row + 4 <= 9) {
+            this.#placeVertically(ship, row, col);
+          }
+          break;
+
+        default:
+      }
+    }
   }
 }
