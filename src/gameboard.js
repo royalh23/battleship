@@ -57,10 +57,12 @@ export default class Gameboard {
   }
 
   placeShip(ship, row, col, direction) {
-    if (direction === 'horizontal' && col + ship.length() - 1 <= 9) {
-      this.#placeHorizontally(ship, row, col);
-    } else if (direction === 'vertical' && row + ship.length() - 1 <= 9) {
-      this.#placeVertically(ship, row, col);
+    if (this.board[row][col].isAvailable) {
+      if (direction === 'horizontal' && col + ship.length() - 1 <= 9) {
+        this.#placeHorizontally(ship, row, col);
+      } else if (direction === 'vertical' && row + ship.length() - 1 <= 9) {
+        this.#placeVertically(ship, row, col);
+      }
     }
   }
 }

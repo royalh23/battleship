@@ -130,4 +130,28 @@ describe('placeShip', () => {
       );
     },
   );
+
+  describe('Checking ship collisions', () => {
+    it("Does not place second ship at first ship's coordinates", () => {
+      const gb = new Gameboard();
+      const shipOne = new Ship(3);
+      const shipTwo = new Ship(3);
+      gb.placeShip(shipOne, 4, 4, 'horizontal');
+      gb.placeShip(shipTwo, 4, 4, 'horizontal');
+      for (let i = 4; i < 7; i += 1) {
+        expect(gb.board[4][i].data).toBe(shipOne);
+      }
+    });
+
+    it('Does not place second ship around first ship', () => {
+      const gb = new Gameboard();
+      const shipOne = new Ship(3);
+      const shipTwo = new Ship(3);
+      gb.placeShip(shipOne, 4, 4, 'horizontal');
+      gb.placeShip(shipTwo, 3, 4, 'horizontal');
+      for (let i = 4; i < 7; i += 1) {
+        expect(gb.board[3][i].data).toEqual(null);
+      }
+    });
+  });
 });
