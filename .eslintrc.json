@@ -11,7 +11,8 @@
   "globals": {
     "describe": "readonly",
     "it": "readonly",
-    "expect": "readonly"
+    "expect": "readonly",
+    "jest": "readonly"
   },
   "rules": {}
 }
