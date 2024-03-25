@@ -155,3 +155,14 @@ describe('placeShip', () => {
     });
   });
 });
+
+describe('receiveAttack', () => {
+  it.each([
+    [0, 0],
+    [4, 4],
+  ])('Hits the cell at [%i, %i]', (row, col) => {
+    const gb = new Gameboard();
+    gb.receiveAttack(row, col);
+    expect(gb.board[row][col].isHit).toEqual(true);
+  });
+});
