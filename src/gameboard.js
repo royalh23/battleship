@@ -1,6 +1,9 @@
 export default class Gameboard {
+  #ships;
+
   constructor() {
     this.board = Gameboard.createBoard();
+    this.#ships = [];
   }
 
   static createBoard() {
@@ -45,6 +48,7 @@ export default class Gameboard {
       nextCol += 1;
     }
     this.#makeUnavailableHor(ship.length(), row, col);
+    this.#ships.push(ship);
   }
 
   #placeVertically(ship, row, col) {
@@ -54,6 +58,7 @@ export default class Gameboard {
       nextRow += 1;
     }
     this.#makeUnavailableVer(ship.length(), row, col);
+    this.#ships.push(ship);
   }
 
   placeShip(ship, row, col, direction) {
@@ -71,5 +76,9 @@ export default class Gameboard {
       this.board[row][col].isHit = true;
       if (this.board[row][col].data !== null) this.board[row][col].data.hit();
     }
+  }
+
+  areShipsSunk() {
+    return this.#ships.every((ship) => ship.isSunk() === true);
   }
 }

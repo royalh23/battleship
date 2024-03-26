@@ -185,3 +185,91 @@ describe('receiveAttack', () => {
     expect(ship.hit).toHaveBeenCalled();
   });
 });
+
+describe('areShipsSunk', () => {
+  it.each([
+    {
+      ships: 1,
+      condition: false,
+      coords: [
+        [0, 0, 'horizontal', 2],
+        [0, 4, 'vertical', 3],
+        [4, 7, 'horizontal', 3],
+        [8, 1, 'horizontal', 4],
+        [2, 0, 'vertical', 5],
+      ],
+    },
+    {
+      ships: 2,
+      condition: false,
+      coords: [
+        [0, 4, 'vertical', 2],
+        [3, 0, 'vertical', 3],
+        [3, 9, 'vertical', 3],
+        [7, 4, 'horizontal', 4],
+        [9, 0, 'horizontal', 5],
+      ],
+    },
+    {
+      ships: 3,
+      condition: false,
+      coords: [
+        [9, 8, 'horizontal', 2],
+        [9, 0, 'horizontal', 3],
+        [7, 5, 'vertical', 3],
+        [0, 2, 'vertical', 4],
+        [4, 5, 'horizontal', 5],
+      ],
+    },
+    {
+      ships: 4,
+      condition: false,
+      coords: [
+        [5, 4, 'horizontal', 2],
+        [1, 0, 'vertical', 3],
+        [6, 9, 'vertical', 3],
+        [9, 3, 'horizontal', 4],
+        [0, 8, 'vertical', 5],
+      ],
+    },
+    {
+      ships: 5,
+      condition: true,
+      coords: [
+        [0, 0, 'horizontal', 2],
+        [7, 9, 'vertical', 3],
+        [9, 0, 'horizontal', 3],
+        [5, 0, 'horizontal', 4],
+        [0, 9, 'vertical', 5],
+      ],
+    },
+  ])(
+    'Returns $condition when $ships ships are sunk',
+    ({ ships, condition, coords }) => {
+      const gb = new Gameboard();
+      const shipsArr = [];
+      const shipOne = new Ship(2);
+      const shipTwo = new Ship(3);
+      const shipThree = new Ship(3);
+      const shipFour = new Ship(4);
+      const shipFive = new Ship(5);
+      shipsArr.push(shipOne, shipTwo, shipThree, shipFour, shipFive);
+      shipsArr.forEach((ship, i) => {
+        gb.placeShip(ship, coords[i][0], coords[i][1], coords[i][2]);
+      });
+
+      for (let i = 0; i < ships; i += 1) {
+        if (coords[i][2] === 'horizontal') {
+          for (let j = coords[i][1]; j < coords[i][1] + coords[i][3]; j += 1) {
+            gb.receiveAttack(coords[i][0], j);
+          }
+        } else {
+          for (let j = coords[i][0]; j < coords[i][0] + coords[i][3]; j += 1) {
+            gb.receiveAttack(j, coords[i][1]);
+          }
+        }
+      }
+      expect(gb.areShipsSunk()).toEqual(condition);
+    },
+  );
+});
