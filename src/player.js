@@ -10,4 +10,8 @@ export default class Player {
   attack(row, col) {
     this.board.receiveAttack(row, col);
   }
+
+  compAttack() {
+    this.attack(...Player.generateCoords());
+  }
 }
