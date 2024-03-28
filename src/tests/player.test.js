@@ -13,3 +13,12 @@ describe('attack', () => {
     expect(gb.receiveAttack).toHaveBeenCalledWith(row, col);
   });
 });
+
+describe('generateCoords', () => {
+  it('Returns array of random row and col between 0 and 9', () => {
+    expect(Player.generateCoords()[0]).toBeGreaterThanOrEqual(0);
+    expect(Player.generateCoords()[0]).toBeLessThanOrEqual(9);
+    expect(Player.generateCoords()[1]).toBeGreaterThanOrEqual(0);
+    expect(Player.generateCoords()[1]).toBeLessThanOrEqual(9);
+  });
+});
