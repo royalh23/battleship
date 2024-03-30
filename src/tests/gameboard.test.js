@@ -132,7 +132,7 @@ describe('placeShip', () => {
   );
 
   describe('Checking ship collisions', () => {
-    it("Does not place second ship at first ship's coordinates", () => {
+    it("Does not place second ship at first ship's coords", () => {
       const gb = new Gameboard();
       const shipOne = new Ship(3);
       const shipTwo = new Ship(3);
@@ -140,6 +140,29 @@ describe('placeShip', () => {
       gb.placeShip(shipTwo, 4, 4, 'horizontal');
       for (let i = 4; i < 7; i += 1) {
         expect(gb.board[4][i].data).toBe(shipOne);
+      }
+    });
+
+    it("Does not place second ship before first ship's coords horizontally", () => {
+      const gb = new Gameboard();
+      const shipOne = new Ship(3);
+      const shipTwo = new Ship(3);
+      gb.placeShip(shipOne, 4, 4, 'horizontal');
+      gb.placeShip(shipTwo, 4, 2, 'horizontal');
+      expect(gb.board[4][4].data).toBe(shipOne);
+      for (let i = 2; i < 4; i += 1) {
+        expect(gb.board[4][i].data).toBe(null);
+      }
+    });
+
+    it("Does not place second ship before first ship's coords vertically", () => {
+      const gb = new Gameboard();
+      const shipOne = new Ship(3);
+      const shipTwo = new Ship(3);
+      gb.placeShip(shipOne, 4, 0, 'vertical');
+      gb.placeShip(shipTwo, 1, 0, 'vertical');
+      for (let i = 1; i < 4; i += 1) {
+        expect(gb.board[i][0].data).toBe(null);
       }
     });
 
