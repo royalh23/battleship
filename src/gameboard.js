@@ -80,10 +80,8 @@ export default class Gameboard {
   }
 
   receiveAttack(row, col) {
-    if (!this.board[row][col].isHit) {
-      this.board[row][col].isHit = true;
-      if (this.board[row][col].data !== null) this.board[row][col].data.hit();
-    }
+    this.board[row][col].isHit = true;
+    if (this.board[row][col].data !== null) this.board[row][col].data.hit();
   }
 
   areShipsSunk() {

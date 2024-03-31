@@ -189,16 +189,6 @@ describe('receiveAttack', () => {
     expect(gb.board[row][col].isHit).toEqual(true);
   });
 
-  it('Does not hit the same cell twice', () => {
-    const gb = new Gameboard();
-    const ship = new Ship(3);
-    ship.hit = jest.fn(); // Mock ship.hit
-    gb.placeShip(ship, 4, 4, 'horizontal');
-    gb.receiveAttack(4, 4);
-    gb.receiveAttack(4, 4);
-    expect(ship.hit).toHaveBeenCalledTimes(1);
-  });
-
   it("Sends the 'hit' function to the attacked ship", () => {
     const gb = new Gameboard();
     const ship = new Ship(3);
