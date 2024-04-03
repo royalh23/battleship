@@ -11,4 +11,15 @@ html {
 body {
   margin: 0;
   padding: 0;
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65px;
+  font-size: 1.6rem;
+  background-color: rgb(69, 156, 243);
+  color: white;
 }
