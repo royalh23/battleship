@@ -176,6 +176,24 @@ describe('placeShip', () => {
         expect(gb.board[3][i].data).toEqual(null);
       }
     });
+
+    it('Does not place ships crosswise (1)', () => {
+      const gb = new Gameboard();
+      const shipOne = new Ship(4);
+      const shipTwo = new Ship(5);
+      gb.placeShip(shipOne, 4, 1, 'horizontal');
+      gb.placeShip(shipTwo, 2, 2, 'vertical');
+      expect(gb.board[4][2].data).toBe(shipOne);
+    });
+
+    it('Does not place ships crosswise (2)', () => {
+      const gb = new Gameboard();
+      const shipOne = new Ship(3);
+      const shipTwo = new Ship(5);
+      gb.placeShip(shipOne, 2, 4, 'horizontal');
+      gb.placeShip(shipTwo, 0, 4, 'vertical');
+      expect(gb.board[2][4].data).toBe(shipOne);
+    });
   });
 });
 

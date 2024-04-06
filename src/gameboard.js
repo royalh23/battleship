@@ -1,3 +1,6 @@
+import { getCoords, getDirection } from './random';
+import Ship from './ship';
+
 export default class Gameboard {
   #ships;
 
@@ -63,7 +66,23 @@ export default class Gameboard {
 
   placeShip(ship, row, col, direction) {
     if (this.board[row][col].isAvailable) {
-      if (
+      if (ship.length() === 5) {
+        if (
+          direction === 'horizontal' &&
+          col + ship.length() - 1 <= 9 &&
+          this.board[row][col + ship.length() - 1].isAvailable &&
+          this.board[row][col + 2].isAvailable
+        ) {
+          this.#placeHorizontally(ship, row, col);
+        } else if (
+          direction === 'vertical' &&
+          row + ship.length() - 1 <= 9 &&
+          this.board[row + ship.length() - 1][col].isAvailable &&
+          this.board[row + 2][col].isAvailable
+        ) {
+          this.#placeVertically(ship, row, col);
+        }
+      } else if (
         direction === 'horizontal' &&
         col + ship.length() - 1 <= 9 &&
         this.board[row][col + ship.length() - 1].isAvailable
@@ -75,6 +94,36 @@ export default class Gameboard {
         this.board[row + ship.length() - 1][col].isAvailable
       ) {
         this.#placeVertically(ship, row, col);
+      }
+    }
+  }
+
+  placeRandomly() {
+    let ships = [new Ship(5), new Ship(4), new Ship(3), new Ship(3)].concat(
+      new Ship(2),
+    );
+
+    while (ships.length !== 0) {
+      const curShip = ships.shift();
+
+      let row;
+      let col;
+      const direction = getDirection();
+
+      if (direction === 'horizontal') {
+        [row, col] = getCoords(10, 11 - curShip.length());
+      } else {
+        [row, col] = getCoords(11 - curShip.length(), 10);
+      }
+
+      this.placeShip(curShip, row, col, direction);
+
+      if (this.board[row][col].data !== curShip) {
+        this.board = Gameboard.createBoard();
+        this.#ships = [];
+        ships = [new Ship(5), new Ship(4), new Ship(3), new Ship(3)].concat(
+          new Ship(2),
+        );
       }
     }
   }

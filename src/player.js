@@ -1,10 +1,8 @@
+import { getCoords } from './random';
+
 export default class Player {
   constructor(board) {
     this.board = board;
-  }
-
-  static generateCoords() {
-    return [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
   }
 
   attack(row, col) {
@@ -12,7 +10,7 @@ export default class Player {
   }
 
   compAttack() {
-    const [row, col] = Player.generateCoords();
+    const [row, col] = getCoords(10, 10);
     if (this.board[row][col].isHit) this.compAttack();
     else this.attack(row, col);
   }
