@@ -11,7 +11,7 @@ export default class Player {
 
   compAttack() {
     const [row, col] = getCoords(10, 10);
-    if (this.board[row][col].isHit) this.compAttack();
+    if (this.board.board[row][col].isHit) this.compAttack();
     else this.attack(row, col);
   }
 }

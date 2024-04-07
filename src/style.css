@@ -45,8 +45,8 @@ body {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   border: 1px solid black;
-  min-height: 505px;
-  min-width: 505px;
+  min-height: 421px;
+  min-width: 421px;
 }
 
 .text {
@@ -54,6 +54,9 @@ body {
 }
 
 .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid black;
 }
 
@@ -61,8 +64,24 @@ body {
   background-color: rgb(170, 170, 170);
 }
 
+.missed,
+.hit,
+.sunk {
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+}
+
+.missed {
+  background-color: rgb(25, 25, 25);
+}
+
 .hit {
   background-color: red;
+}
+
+.sunk {
+  background-color: rgb(39, 172, 39);
 }
 
 .btns {
@@ -83,4 +102,10 @@ body {
 
 .btn:active {
   transform: translateY(4px);
+}
+
+.turn {
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
 }
