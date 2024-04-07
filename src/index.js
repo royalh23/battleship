@@ -2,7 +2,11 @@ import './style.css';
 import Game from './game';
 
 const game = new Game();
+const content = document.querySelector('.content');
 const boards = document.querySelector('.boards');
+const btns = document.querySelector('.btns');
+const randomBtn = document.querySelector('.btn:first-child');
+const startBtn = document.querySelector('.btn:last-child');
 
 function displayBoard(board) {
   const cont = document.createElement('div');
@@ -74,12 +78,17 @@ function waitForCompAttack(ms) {
   });
 }
 
+function redisplayBoards() {
+  boards.textContent = '';
+  displayBoard(game.playerBoard.board);
+  displayBoard(game.compBoard.board);
+}
+
 async function startGame() {
   // Display comp board
   displayBoard(game.compBoard.board);
 
   // Add restart btn
-  const btns = document.querySelector('.btns');
   const restartBtn = document.createElement('button');
   restartBtn.classList.add('btn');
   restartBtn.textContent = 'Restart';
@@ -92,7 +101,7 @@ async function startGame() {
   let winner;
   const turnText = document.createElement('div');
   turnText.classList.add('turn');
-  document.body.insertBefore(turnText, boards);
+  content.insertBefore(turnText, boards);
 
   while (!gameOver) {
     const cells = document.querySelectorAll('.cont:last-child .cell');
@@ -100,9 +109,7 @@ async function startGame() {
 
     if (turn) {
       await waitForPlayerAttack(cells, 'click');
-      boards.textContent = '';
-      displayBoard(game.playerBoard.board);
-      displayBoard(game.compBoard.board);
+      redisplayBoards();
       if (game.compBoard.areShipsSunk()) {
         gameOver = true;
         winner = 'Player';
@@ -110,9 +117,7 @@ async function startGame() {
       turn = !turn;
     } else {
       await waitForCompAttack(600);
-      boards.textContent = '';
-      displayBoard(game.playerBoard.board);
-      displayBoard(game.compBoard.board);
+      redisplayBoards();
       if (game.playerBoard.areShipsSunk()) {
         gameOver = true;
         winner = 'Computer';
@@ -124,24 +129,10 @@ async function startGame() {
   alert(`${winner} wins!`);
 }
 
-function addBtns() {
-  const btns = document.createElement('div');
-  const randomBtn = document.createElement('button');
-  const startBtn = document.createElement('button');
-
-  btns.classList.add('btns');
-  randomBtn.classList.add('btn');
-  startBtn.classList.add('btn');
-
-  randomBtn.textContent = 'Randomize';
-  startBtn.textContent = 'Start game';
-
-  btns.append(randomBtn, startBtn);
-  document.body.append(btns);
-
+function addBtnListeners() {
   randomBtn.addEventListener('click', () => {
-    boards.textContent = '';
     game.playerBoard.placeRandomly();
+    boards.textContent = '';
     displayBoard(game.playerBoard.board);
   });
 
@@ -150,4 +141,4 @@ function addBtns() {
 
 // Initialize display
 displayBoard(game.playerBoard.board);
-addBtns();
+addBtnListeners();
