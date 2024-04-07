@@ -196,6 +196,7 @@ class Display {
       }
     }
 
+    turnText.textContent = `${winner} wins!`;
     this.#showResult(winner);
   }
 
