@@ -14,5 +14,7 @@
     "expect": "readonly",
     "jest": "readonly"
   },
-  "rules": {}
+  "rules": {
+    "no-await-in-loop": "off"
+  }
 }
