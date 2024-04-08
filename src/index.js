@@ -26,13 +26,17 @@ class Display {
     this.#newGame = document.querySelector('.dialog > .btn');
   }
 
-  static #restartGame() {
+  static #refreshContent() {
     const boards = document.querySelector('.boards');
     const btns = document.querySelector('.btns');
     const turn = document.querySelector('.turn');
     turn.remove();
     boards.textContent = '';
     btns.textContent = '';
+  }
+
+  static #restartGame() {
+    Display.#refreshContent();
 
     const display = new Display();
     display.initializeDisplay();
@@ -196,6 +200,7 @@ class Display {
       }
     }
 
+    // Declare winner
     turnText.textContent = `${winner} wins!`;
     this.#showResult(winner);
   }
