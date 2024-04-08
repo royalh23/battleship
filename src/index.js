@@ -165,7 +165,7 @@ class Display {
     this.#btns.appendChild(restartBtn);
     restartBtn.addEventListener('click', Display.#restartGame);
 
-    // Start game
+    // Run game
     let gameOver = false;
     let turn = true;
     let winner;
