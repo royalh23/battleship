@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest --verbose",
     "build": "webpack",
+    "update": "git subtree push --prefix dist origin gh-pages",
     "watch": "webpack --watch"
   },
   "keywords": [],

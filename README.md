@@ -8,3 +8,5 @@ Concepts/skills/techniques practiced:
 - Promises and async/await syntax for promise-based events;
 - Classes and ES6 modules for neat code organization;
 - SOLID principles (as much as possible).
+
+[Live link](https://royalh23.github.io/battleship/)
