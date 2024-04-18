@@ -115,7 +115,7 @@ class Display {
       const listener = (e) => {
         this.#game.player.attack(e.target.dataset.row, e.target.dataset.col);
         item.forEach((cell) => {
-          cell.removeEventListener(event, (ev) => listener(ev));
+          cell.removeEventListener(event, listener);
         });
         resolve();
       };
@@ -124,7 +124,7 @@ class Display {
         if (
           !this.#game.compBoard.board[cell.dataset.row][cell.dataset.col].isHit
         ) {
-          cell.addEventListener(event, (e) => listener(e));
+          cell.addEventListener(event, listener);
         }
       });
     });
